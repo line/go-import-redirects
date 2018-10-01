@@ -5,15 +5,15 @@ if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
   echo
   echo "1) $0 foo bar"
   echo
-  echo "   'import \"line.github.io/golang/foo\"' is redirected to 'https://github.com/line/bar.git'"
+  echo "   'import \"go.linecorp.com/foo\"' is redirected to 'https://github.com/line/bar.git'"
   echo
   echo "2) $0 foo/bar qux"
   echo
-  echo "   'import \"line.github.io/golang/foo/bar\"' is redirected to 'https://github.com/line/qux.git'"
+  echo "   'import \"go.linecorp.com/foo/bar\"' is redirected to 'https://github.com/line/qux.git'"
   echo
   echo "3) $0 foo/bar qux baz"
   echo
-  echo "   'import \"line.github.io/golang/foo/bar/baz\"' is redirected to the package 'baz' in 'https://github.com/line/qux.git'"
+  echo "   'import \"go.linecorp.com/foo/bar/baz\"' is redirected to the package 'baz' in 'https://github.com/line/qux.git'"
   echo
   exit 1
 fi
@@ -36,7 +36,7 @@ if [[ -n "$SUFFIX" ]] && [[ ! "$SUFFIX" =~ (^([-_0-9a-zA-Z]+/)*[-_0-9a-zA-Z]+$) 
 fi
 
 cd "$(dirname "$0")"
-IMPORT_ROOT="line.github.io/golang/$SRC"
+IMPORT_ROOT="go.linecorp.com/$SRC"
 GODOC_URL="https://godoc.org/$IMPORT_ROOT"
 SRC_DIR="$SRC"
 if [[ -n "$SUFFIX" ]]; then
