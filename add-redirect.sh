@@ -7,13 +7,9 @@ if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
   echo
   echo "   'import \"go.linecorp.com/foo\"' is redirected to 'https://github.com/line/bar.git'"
   echo
-  echo "2) $0 foo/bar qux"
+  echo "2) $0 foo bar qux"
   echo
-  echo "   'import \"go.linecorp.com/foo/bar\"' is redirected to 'https://github.com/line/qux.git'"
-  echo
-  echo "3) $0 foo/bar qux baz"
-  echo
-  echo "   'import \"go.linecorp.com/foo/bar/baz\"' is redirected to the package 'baz' in 'https://github.com/line/qux.git'"
+  echo "   'import \"go.linecorp.com/foo/qux\"' is redirected to the package 'qux' in 'https://github.com/line/bar.git'"
   echo
   exit 1
 fi
@@ -50,9 +46,11 @@ echo "<!DOCTYPE html>
 <head>
 <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>
 <meta name=\"go-import\" content=\"$IMPORT_ROOT git https://github.com/line/$DST\">
+<meta name=\"go-source\" content=\"$IMPORT_ROOT https://github.com/line/$DST/ https://github.com/line/$DST/tree/master{/dir} https://github.com/line/$DST/blob/master{/dir}/{file}#L{line}\">
 <meta http-equiv=\"refresh\" content=\"0; url=$GODOC_URL\">
 </head>
 <body>
 Redirecting to docs at <a href=\"$GODOC_URL\">$GODOC_URL</a>...
 </body>
-</html>" > "$SRC_DIR/index.html"
+</html>
+" > "$SRC_DIR/index.html"
